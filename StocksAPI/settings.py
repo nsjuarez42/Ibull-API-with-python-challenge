@@ -22,6 +22,7 @@ ROOT_URLCONF = 'StocksAPI.urls'
 
 INSTALLED_APPS = [
     'rest_framework',
+    'trades.apps.TradesConfig'
 ]
 
 TEST_RUNNER = 'xmlrunner.extra.djangotestrunner.XMLTestRunner'

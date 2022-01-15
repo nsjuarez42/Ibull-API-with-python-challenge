@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import url
+from django.conf.urls import url,include
 
-from StocksAPI.views import index
 
 urlpatterns = [
-    url('', index.index)
+   url('',include('trades.urls'))
 ]
