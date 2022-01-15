@@ -9,11 +9,13 @@ import json
 def tradesAPI(request):
     if request.method == 'POST':
 
-      trade = json.loads(request.body)['trade']
+      trade = json.loads(request.body)
+      print(trade["shares"])
+      print(trade["type"])
       if ((trade["shares"] in range(1,100)) and (trade['type'] == "buy") or (trade["type"] == "sell")):
 
        trade_data = JSONParser().parse(request)
-       trades_serializer = TradeSerializer(data=trade_data['trade'])
+       trades_serializer = TradeSerializer(data=trade_data)
        if trades_serializer.is_valid():
            trades_serializer.save()
            return JsonResponse(trades_serializer.data,status=201)
@@ -29,7 +31,6 @@ def tradesAPI(request):
         if ("user_id" in request.GET) and ('type' in request.GET):
             user_id = request.GET.get('user_id')
             trade_type = request.GET.get('type')
-            print("user id and type in trade")
             trades = Trade.objects.filter(user_id=user_id).filter(type=trade_type)
             trades_serializer = TradeSerializer(trades,many=True)
             return JsonResponse(trades_serializer.data,safe=False)         
