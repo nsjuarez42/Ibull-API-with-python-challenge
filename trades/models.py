@@ -7,7 +7,7 @@ class Trade(models.Model):
     user_id = models.IntegerField()
     symbol = models.CharField(max_length=3)
     shares = models.IntegerField()
-    price = models.DecimalField(max_digits=6,decimal_places=2)
+    price = models.FloatField()
     timestamp = models.BigIntegerField()
 
 
